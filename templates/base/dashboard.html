@@ -1,0 +1,46 @@
+{% extends 'base/base-template.html' %}
+{% load static %}
+{% block page_content %}
+    <div class="container text-center pt-5">
+        <h1 class="display-1">Welcome to {{ page_title }}</h1>
+    </div>
+    {% if page_empty %}
+
+
+    {% else %}
+        <div class="container pt-5">
+            <h2>Polecane</h2>
+            <div class="col shadow p-3 mb-5 bg-body rounded">
+                <div class="row justify-content-middle">
+                    <div class="col-md-4 align-self-center mx-auto text-center">
+                        <img src="{{ featured_item.image.url }}" alt="{{ featured_item.name }}" class="img-fluid mx-auto my-auto d-block"
+                             style="max-height: 300px">
+                        {% if featured_item.is_dangarous_to_enviroment %}
+                            <img class="img-fluid"
+                                 src="{% static 'images/substancja szkodliwa dla środowiska.png' %}"
+                                 alt="Substancja szkodliwa dla środowiska" height="50" width="50">
+                        {% endif %}
+                        {% if featured_item.is_cancerogenic %}
+                            <img class="img-fluid"
+                                 src="{% static 'images/substancja rakotwórcza mutogenna.png' %}"
+                                 alt="Substancja rakotwórcza" height="50" width="50">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-8">
+                        <p class="fs-1 fw-bold mb-0">{{ featured_item.name }}</p>
+
+                        <p class="fs-4 lh-1">{{ featured_item.category }}</p>
+                        <p class="fs-5 lh-1">Producent: {{ featured_item.brand }}</p>
+                        <p class="fs-3 lh-1 fw-bold">{{ featured_item.price }} zł</p>
+
+                        <p>{{ featured_item.desc|slice:':512' }}...</p>
+                        <div class="d-grid">
+                            <a href="{% url 'product' slug=featured_item.slug %}"
+                               class="btn btn-primary btn-lg">Więcej</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base/base-template.html' %}
+{% block page_content %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 border rounded">
+                <h1>Panel administracyjny</h1>
+            </div>
+            <div class="col-md-6 border rounded">
+                <h2>Informacje</h2>
+                <h3 class="mt-5">Produkty</h3>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Łączna ilość produktów</th>
+                        <th scope="col">Liczba dostępnych produktów</th>
+                        <th scope="col">Liczba niedostępnych produktów</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                            <tr>
+                              <th scope="row">{{ all_products_count }}</th>
+                              <td class="text-success fw-bold">{{ available_products_count }}</td>
+                              <td class="text-danger fw-bold">{{ unavailable_products_count }}</td>
+                            </tr>
+                    </tbody>
+                </table>
+                <h4>Najnowszy produkt</h4>
+                <p>{{ latest_product.name }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

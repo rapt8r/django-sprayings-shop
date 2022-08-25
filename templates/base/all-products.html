@@ -1,0 +1,9 @@
+{% extends 'base/base-template.html' %}
+
+{% block page_content %}
+    <div class="container pt-5">
+    {% for product in all_products_object %}
+        {% include 'includes/product-item.html' %}
+    {% endfor %}
+    </div>
+{% endblock %}
