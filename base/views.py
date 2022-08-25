@@ -25,27 +25,23 @@ def product_page(request, slug):
 
 
 
-def dashboard(request):
+
+def main_page(request):
+    #Get all alerts
     alerts = Alert.objects.all()
-    count = Spraying.objects.filter(featured=True, is_available=True).count()
-    if count != 0:
-        random_object = Spraying.objects.all().filter(featured=True, is_available=True)[randint(0, count - 1)]
-        page = {
-            'page_title': 'Dashboard',
-            'page_language': 'pl',
-            'page_empty': False,
-            'featured_item': random_object,
-            'alerts': alerts
-        }
-        return render(request, 'base/dashboard.html', page)
+    context_dict = {
+        'page_title': 'SprayMax',
+        'page_empty': False,
+        'alerts': alerts
+    }
+    #Check if there are featured items to show
+    featured_items_count = Spraying.objects.filter(featured=True, is_available=True).count()
+    if featured_items_count == 0:
+        context_dict['page_show_featured'] = False
     else:
-        page = {
-            'page_title': 'Dashboard',
-            'page_language': 'pl',
-            'page_empty': True,
-            'alerts': alerts
-        }
-        return render(request, 'base/dashboard.html', page)
+        context_dict['page_show_featured'] = True
+        context_dict['featured_item'] = Spraying.objects.filter(featured=True, is_available=True).all()[randint(0, featured_items_count - 1)]
+    return render(request, 'base/main-page.html', context=context_dict)
 
 
 def admin_info(request):
