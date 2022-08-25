@@ -8,12 +8,12 @@
                 <img class="img-fluid mx-auto" src="{{ product.image.url }}" alt="Produkt"
                      height="400" width="400">
                 {% if product.is_dangarous_to_enviroment %}
-                    <img class="img-fluid mx-auto" src="{% static 'images/substancja szkodliwa dla środowiska.png' %}"
-                         alt="Substancja szkodliwa dla środowiska" height="100" width="100">
+                    <img class="img-fluid mx-auto" src="{% static 'images/GHS09.png' %}"
+                         alt="GHS09" height="100" width="100">
                 {% endif %}
                 {% if product.is_cancerogenic %}
-                    <img class="img-fluid mx-auto" src="{% static 'images/substancja rakotwórcza mutogenna.png' %}"
-                         alt="Substancja rakotwórcza" height="100" width="100">
+                    <img class="img-fluid mx-auto" src="{% static 'images/GHS08.png' %}"
+                         alt="GHS08" height="100" width="100">
                 {% endif %}
                 <h1>{{ product.name }}</h1>
                 <h5>{{ product.category }}</h5>

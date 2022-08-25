@@ -32,8 +32,8 @@ class Spraying(models.Model):
     price = models.DecimalField(decimal_places=2, max_digits=6, blank=True)
     is_available = models.BooleanField()
     show_warning = models.BooleanField()
-    is_dangarous_to_enviroment = models.BooleanField()
-    is_cancerogenic = models.BooleanField()
+    is_dangarous_to_enviroment = models.BooleanField(verbose_name='Is dangarous to enviroment (GHS09)')
+    is_cancerogenic = models.BooleanField(verbose_name='Is cancerogenic (GHS08)')
     def __str__(self):
         return self.name
     class Meta:
