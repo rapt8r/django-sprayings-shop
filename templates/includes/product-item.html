@@ -1,8 +1,8 @@
 <div class="card mt-2">
-  <div class="card-body">
-    <h2 class="card-title">{{ product.name }}</h2>
-    <p class="card-text">{{ product.desc }}</p>
-    <p class="card-text">{{ product.price }}zł</p>
-    <a href="{% url 'product' slug=product.slug %}" class="btn btn-primary">Więcej</a>
-  </div>
+    <div class="card-body">
+        <h2 class="card-title">{{ object.name }}</h2>
+        <p class="card-text">{{ object.desc }}</p>
+        <p class="card-text">{{ object.price }}zł</p>
+        <a href="{% url 'product_detail' slug=object.slug %}" class="btn btn-primary">Więcej</a>
+    </div>
 </div>

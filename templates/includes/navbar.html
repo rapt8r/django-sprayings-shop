@@ -4,7 +4,7 @@
         <a class="navbar-brand" href="#">
             <img src="{% static 'images/favicon-32x32.png' %}" alt="" width="32" height="32">
         </a>
-        <a class="navbar-brand" href="{% url 'homepage' %}">Sprayings</a>
+        <a class="navbar-brand" href="{% url 'homepage' %}">SprayMax</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -12,8 +12,25 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'product' slug='all' %}">Wszystkie produkty</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'all_products' %}">Wszystkie
+                        produkty</a>
                 </li>
+            </ul>
+        </div>
+        <div>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page">Witaj, {{ user.username }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Wyloguj się</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Zaloguj się</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>

@@ -1,26 +1,27 @@
 {% extends 'base/base-template.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block page_content %}
-    <div class="container-sm pt-5">
-        <div class="row">
+    <div class="container-sm mt-5">
+        <div class="row mt-5">
             <div class="col-md-4">
                 <h1>Produkt</h1>
-                <img class="img-fluid mx-auto" src="{{ product.image.url }}" alt="Produkt"
+                <img class="img-fluid mx-auto" src="{{ object.image.url }}" alt="Produkt"
                      height="400" width="400">
-                {% if product.is_dangarous_to_enviroment %}
+                {% if object.is_dangarous_to_enviroment %}
                     <img class="img-fluid mx-auto" src="{% static 'images/GHS09.png' %}"
                          alt="GHS09" height="100" width="100">
                 {% endif %}
-                {% if product.is_cancerogenic %}
+                {% if object.is_cancerogenic %}
                     <img class="img-fluid mx-auto" src="{% static 'images/GHS08.png' %}"
                          alt="GHS08" height="100" width="100">
                 {% endif %}
-                <h1>{{ product.name }}</h1>
-                <h5>{{ product.category }}</h5>
-                <h5>Producent: {{ product.brand }}</h5>
+                <h1>{{ object.name }}</h1>
+                <h5>{{ object.category }}</h5>
+                <h5>Producent: {{ object.brand }}</h5>
                 <h6 class="pt-2">Działa na:</h6>
                 <ul>
-                    {% for disease in works_on %}
+                    {% for disease in object.works_on.all %}
                         <li><span class="fw-bold">{{ disease.name }}</span> ({{ disease.description }})</li>
                     {% endfor %}
                 </ul>
@@ -31,12 +32,12 @@
             </div>
             <div class="col-md-8">
                 <h2>Opis</h2>
-                <p class="pt-2">{{ product.desc|linebreaks }}</p>
-                {% if product.is_available %}
+                <p class="pt-2">{{ object.desc|linebreaks }}</p>
+                {% if object.is_available %}
                     <h2 class="text-success"><i class="bi bi-check"></i>Dostępny</h2>
                     <div class="row">
                         <div class="col-md-8">
-                            <span class="fs-1">Cena: {{ product.price }}zł</span>
+                            <span class="fs-1">Cena: {{ object.price }}zł</span>
                         </div>
                         <div class="col-md-4">
 
@@ -51,11 +52,10 @@
                         <i class="bi bi-info-circle-fill"></i> Oczekiwanie na dostawę.
                     </div>
                 {% endif %}
-                {% if product.show_warning %}
+                {% if object.show_warning %}
                     {% include 'includes/product-warning.html' %}
                 {% endif %}
             </div>
         </div>
-
     </div>
 {% endblock %}
